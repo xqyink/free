@@ -1,8 +1,11 @@
 FROM debian
+USER root
 RUN dpkg --add-architecture i386
 RUN apt update
 RUN DEBIAN_FRONTEND=noninteractive apt install wine qemu-kvm *zenhei* xz-utils dbus-x11 curl firefox-esr gnome-system-monitor mate-system-monitor  git xfce4 xfce4-terminal tightvncserver wget   -y
 RUN wget https://github.com/novnc/noVNC/archive/refs/tags/v1.2.0.tar.gz
+RUN wget https://az764295.vo.msecnd.net/stable/2ccd690cbff1569e4a83d7c43d45101f817401dc/code_1.80.2-1690491597_amd64.deb
+RUN dpkg -i code_1.80.2-1690491597_amd64.deb
 RUN tar -xvf v1.2.0.tar.gz
 RUN mkdir  $HOME/.vnc
 RUN echo 'F5d8b8516a16' | vncpasswd -f > $HOME/.vnc/passwd
